@@ -25,7 +25,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const mobileMenu = document.getElementById('mobileMenu');
         
         if (hamburger && mobileMenu) {
-            hamburger.addEventListener('click', function() {
+            hamburger.addEventListener('click', function(e) {
+                e.stopPropagation();
                 mobileMenu.classList.toggle('active');
                 hamburger.innerHTML = mobileMenu.classList.contains('active') 
                     ? '<i class="fas fa-times"></i>' 
@@ -40,19 +41,17 @@ document.addEventListener('DOMContentLoaded', function() {
                     hamburger.innerHTML = '<i class="fas fa-bars"></i>';
                 });
             });
-        }
-        
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(event) {
-            if (mobileMenu && mobileMenu.classList.contains('active') && 
-                !mobileMenu.contains(event.target) && 
-                !hamburger.contains(event.target)) {
-                mobileMenu.classList.remove('active');
-                if (hamburger) {
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (mobileMenu.classList.contains('active') && 
+                    !mobileMenu.contains(event.target) && 
+                    !hamburger.contains(event.target)) {
+                    mobileMenu.classList.remove('active');
                     hamburger.innerHTML = '<i class="fas fa-bars"></i>';
                 }
-            }
-        });
+            });
+        }
     }
     
     // ===== SMOOTH SCROLLING =====
@@ -61,10 +60,10 @@ document.addEventListener('DOMContentLoaded', function() {
         
         scrollLinks.forEach(link => {
             link.addEventListener('click', function(e) {
-                e.preventDefault();
-                
                 const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
+                if (targetId === '#' || !targetId.startsWith('#')) return;
+                
+                e.preventDefault();
                 
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
@@ -113,11 +112,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 
                 // Visual feedback
+                const originalText = this.textContent;
                 this.textContent = 'Added!';
                 this.style.backgroundColor = '#2e8b57';
                 
                 setTimeout(() => {
-                    this.textContent = 'Add to Cart';
+                    this.textContent = originalText;
                     this.style.backgroundColor = '';
                 }, 1000);
             });
@@ -136,6 +136,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     e.preventDefault();
                     quickCart.classList.toggle('active');
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobileMenu');
+                    const hamburger = document.getElementById('hamburger');
+                    
+                    if (mobileMenu && mobileMenu.classList.contains('active')) {
+                        mobileMenu.classList.remove('active');
+                        hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
                 });
             });
             
@@ -245,7 +254,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
                 <div>
                     <span class="cart-item-price">KSH ${(item.price * item.quantity).toLocaleString()}</span>
-                    <button class="cart-item-remove" data-index="${index}"><i class="fas fa-trash"></i></button>
+                    <button class="cart-item-remove" data-index="${index}" aria-label="Remove item"><i class="fas fa-trash"></i></button>
                 </div>
             `;
             
@@ -307,6 +316,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 const method = this.getAttribute('data-method');
                 showPaymentInstructions(method);
                 paymentModal.classList.add('active');
+                
+                // Close mobile menu if open
+                const mobileMenu = document.getElementById('mobileMenu');
+                const hamburger = document.getElementById('hamburger');
+                
+                if (mobileMenu && mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                    hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+                }
             });
         });
         
@@ -386,20 +404,37 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Set minimum date to today
         const dateInput = document.getElementById('date');
+        const timeInput = document.getElementById('time');
+        
         if (dateInput) {
             const today = new Date().toISOString().split('T')[0];
             dateInput.min = today;
             
-            // Set default to 3 days from now
+            // Set default to tomorrow
             const defaultDate = new Date();
-            defaultDate.setDate(defaultDate.getDate() + 3);
+            defaultDate.setDate(defaultDate.getDate() + 1);
             dateInput.value = defaultDate.toISOString().split('T')[0];
+            
+            // Add placeholder attribute
+            dateInput.setAttribute('placeholder', 'Select Date');
         }
         
-        // Set default time to 7:00 PM
-        const timeInput = document.getElementById('time');
         if (timeInput) {
+            // Set default time to 7:00 PM
             timeInput.value = '19:00';
+            
+            // Add placeholder attribute
+            timeInput.setAttribute('placeholder', 'Select Time');
+            
+            // Set min and max times (restaurant hours)
+            timeInput.min = '11:00';
+            timeInput.max = '23:00';
+        }
+        
+        // Set default guests to 2
+        const guestsSelect = document.getElementById('guests');
+        if (guestsSelect) {
+            guestsSelect.value = '2';
         }
         
         reservationForm.addEventListener('submit', function(e) {
@@ -419,6 +454,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 alert('Please fill in all required fields');
                 return;
             }
+            
+            // Format date for display
+            const dateObj = new Date(date);
+            const formattedDate = dateObj.toLocaleDateString('en-US', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            
+            // Format time for display
+            const timeParts = time.split(':');
+            let hours = parseInt(timeParts[0]);
+            const minutes = timeParts[1];
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // Convert 0 to 12
+            const formattedTime = `${hours}:${minutes} ${ampm}`;
             
             // In a real application, you would send this data to a server
             // For now, we'll just show a success message and store in localStorage
@@ -440,7 +493,7 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem('lePalankaReservations', JSON.stringify(reservations));
             
             // Show success message
-            alert(`Thank you, ${name}! Your table for ${guests} on ${date} at ${time} has been reserved. We've sent a confirmation to ${email}.`);
+            alert(`Thank you, ${name}!\n\nYour table for ${guests} on ${formattedDate} at ${formattedTime} has been reserved.\n\nWe've sent a confirmation to ${email} and will call you at ${phone} to confirm.`);
             
             // Reset form
             reservationForm.reset();
@@ -448,12 +501,16 @@ document.addEventListener('DOMContentLoaded', function() {
             // Reset date and time to defaults
             if (dateInput) {
                 const defaultDate = new Date();
-                defaultDate.setDate(defaultDate.getDate() + 3);
+                defaultDate.setDate(defaultDate.getDate() + 1);
                 dateInput.value = defaultDate.toISOString().split('T')[0];
             }
             
             if (timeInput) {
                 timeInput.value = '19:00';
+            }
+            
+            if (guestsSelect) {
+                guestsSelect.value = '2';
             }
         });
     }
@@ -501,9 +558,18 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Order confirmation modal
         const confirmationClose = document.getElementById('confirmationClose');
-        if (confirmationClose) {
+        const orderConfirmationModal = document.getElementById('orderConfirmation');
+        
+        if (confirmationClose && orderConfirmationModal) {
             confirmationClose.addEventListener('click', () => {
-                document.getElementById('orderConfirmation').classList.remove('active');
+                orderConfirmationModal.classList.remove('active');
+            });
+            
+            // Close modal when clicking outside
+            orderConfirmationModal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                }
             });
         }
     }
@@ -518,4 +584,218 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!checkoutItems) return;
         
         // Clear current items
-        checkoutItems
+        checkoutItems.innerHTML = '';
+        
+        if (cart.length === 0) {
+            checkoutItems.innerHTML = '<p class="empty-order-msg">Your cart is empty. <a href="menu.html">Browse our menu</a></p>';
+            
+            // Set all totals to 0
+            if (subtotalElement) subtotalElement.textContent = 'KSH 0';
+            if (serviceChargeElement) serviceChargeElement.textContent = 'KSH 0';
+            if (taxElement) taxElement.textContent = 'KSH 0';
+            if (checkoutTotalElement) checkoutTotalElement.textContent = 'KSH 0';
+            
+            // Disable place order button
+            const placeOrderBtn = document.getElementById('placeOrderBtn');
+            if (placeOrderBtn) {
+                placeOrderBtn.disabled = true;
+                placeOrderBtn.textContent = 'Cart is Empty';
+                placeOrderBtn.style.opacity = '0.6';
+                placeOrderBtn.style.cursor = 'not-allowed';
+            }
+            
+            return;
+        }
+        
+        // Calculate totals
+        let subtotal = 0;
+        
+        // Add cart items
+        cart.forEach((item, index) => {
+            const itemElement = document.createElement('div');
+            itemElement.className = 'order-item';
+            itemElement.innerHTML = `
+                <div class="order-item-name">${item.name} x ${item.quantity}</div>
+                <div>
+                    <span class="order-item-price">KSH ${(item.price * item.quantity).toLocaleString()}</span>
+                    <button class="order-item-remove" data-index="${index}" aria-label="Remove item"><i class="fas fa-trash"></i></button>
+                </div>
+            `;
+            
+            checkoutItems.appendChild(itemElement);
+            subtotal += item.price * item.quantity;
+        });
+        
+        // Calculate charges
+        const serviceCharge = subtotal * 0.10; // 10% service charge
+        const tax = (subtotal + serviceCharge) * 0.16; // 16% VAT
+        const total = subtotal + serviceCharge + tax;
+        
+        // Update UI
+        if (subtotalElement) subtotalElement.textContent = `KSH ${Math.round(subtotal).toLocaleString()}`;
+        if (serviceChargeElement) serviceChargeElement.textContent = `KSH ${Math.round(serviceCharge).toLocaleString()}`;
+        if (taxElement) taxElement.textContent = `KSH ${Math.round(tax).toLocaleString()}`;
+        if (checkoutTotalElement) checkoutTotalElement.textContent = `KSH ${Math.round(total).toLocaleString()}`;
+        
+        // Update M-Pesa amount
+        updateMpesaAmount();
+        
+        // Add event listeners to remove buttons
+        const removeButtons = checkoutItems.querySelectorAll('.order-item-remove');
+        removeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const index = parseInt(this.getAttribute('data-index'));
+                removeFromCart(index);
+            });
+        });
+        
+        // Enable place order button
+        const placeOrderBtn = document.getElementById('placeOrderBtn');
+        if (placeOrderBtn) {
+            placeOrderBtn.disabled = false;
+            placeOrderBtn.textContent = 'Place Order';
+            placeOrderBtn.style.opacity = '1';
+            placeOrderBtn.style.cursor = 'pointer';
+        }
+    }
+    
+    function updateMpesaAmount() {
+        const checkoutTotalElement = document.getElementById('checkoutTotal');
+        const mpesaAmountElement = document.getElementById('mpesaAmount');
+        
+        if (!checkoutTotalElement || !mpesaAmountElement) return;
+        
+        // Extract the total amount from the text
+        const totalText = checkoutTotalElement.textContent;
+        const amount = totalText.replace('KSH ', '').replace(/,/g, '');
+        
+        mpesaAmountElement.textContent = amount;
+    }
+    
+    function placeOrder() {
+        // Get customer details
+        const customerName = document.getElementById('customerName').value;
+        const customerEmail = document.getElementById('customerEmail').value;
+        const customerPhone = document.getElementById('customerPhone').value;
+        const deliveryAddress = document.getElementById('deliveryAddress').value;
+        const orderNotes = document.getElementById('orderNotes').value;
+        
+        // Get selected payment method
+        const selectedPayment = document.querySelector('input[name="payment"]:checked');
+        if (!selectedPayment) {
+            alert('Please select a payment method');
+            return;
+        }
+        
+        const paymentMethod = selectedPayment.value;
+        
+        // Validation
+        if (!customerName || !customerEmail || !customerPhone) {
+            alert('Please fill in all required customer details');
+            return;
+        }
+        
+        // Calculate totals
+        let subtotal = 0;
+        cart.forEach(item => {
+            subtotal += item.price * item.quantity;
+        });
+        
+        const serviceCharge = subtotal * 0.10;
+        const tax = (subtotal + serviceCharge) * 0.16;
+        const total = subtotal + serviceCharge + tax;
+        
+        // Create order object
+        const order = {
+            id: Date.now(),
+            customer: {
+                name: customerName,
+                email: customerEmail,
+                phone: customerPhone,
+                address: deliveryAddress
+            },
+            items: [...cart],
+            subtotal: Math.round(subtotal),
+            serviceCharge: Math.round(serviceCharge),
+            tax: Math.round(tax),
+            total: Math.round(total),
+            paymentMethod: paymentMethod,
+            notes: orderNotes,
+            date: new Date().toISOString(),
+            status: 'pending'
+        };
+        
+        // Save order to localStorage
+        let orders = JSON.parse(localStorage.getItem('lePalankaOrders')) || [];
+        orders.push(order);
+        localStorage.setItem('lePalankaOrders', JSON.stringify(orders));
+        
+        // Clear cart
+        cart = [];
+        localStorage.setItem('lePalankaCart', JSON.stringify(cart));
+        updateCartCount();
+        
+        // Show order summary in modal
+        const orderSummaryText = document.getElementById('orderSummaryText');
+        if (orderSummaryText) {
+            orderSummaryText.innerHTML = `
+                <strong>Order #${order.id}</strong><br>
+                <strong>Total:</strong> KSH ${order.total.toLocaleString()}<br>
+                <strong>Payment:</strong> ${paymentMethod.toUpperCase()}<br>
+                ${deliveryAddress ? `<strong>Delivery to:</strong> ${deliveryAddress}` : '<strong>Pickup at restaurant</strong>'}
+            `;
+        }
+        
+        // Show confirmation modal
+        document.getElementById('orderConfirmation').classList.add('active');
+        
+        // Clear checkout form
+        document.getElementById('customerName').value = '';
+        document.getElementById('customerEmail').value = '';
+        document.getElementById('customerPhone').value = '';
+        document.getElementById('deliveryAddress').value = '';
+        document.getElementById('orderNotes').value = '';
+        
+        // Update checkout page to show empty cart
+        updateCheckoutPage();
+    }
+    
+    // ===== BACK TO TOP BUTTON =====
+    function initBackToTop() {
+        const backToTopButton = document.getElementById('backToTop');
+        
+        if (!backToTopButton) return;
+        
+        // Show/hide button based on scroll position
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        // Scroll to top when clicked
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+    
+    // ===== INITIALIZE QUICK CART =====
+    updateQuickCart();
+});
+
+// Fix for mobile viewport height
+function setVH() {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+// Initial set
+setVH();
+
+// Update on resize
+window.addEventListener('resize', setVH);
