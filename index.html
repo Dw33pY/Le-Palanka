@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Palanka Nairobi | Fine African Dining</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦌</text></svg>">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🦌</span>
+                <span class="logo-text">Le Palanka</span>
+            </a>
+            
+            <div class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="menu.html">Menu</a>
+                <a href="#about" class="scroll-link">About</a>
+                <a href="#contact" class="scroll-link">Contact</a>
+                <a href="checkout.html" class="cart-link">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+            
+            <button class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="index.html" class="active">Home</a>
+                <a href="menu.html">Menu</a>
+                <a href="#about" class="scroll-link">About</a>
+                <a href="#contact" class="scroll-link">Contact</a>
+                <a href="checkout.html" class="cart-link-mobile">
+                    <i class="fas fa-shopping-cart"></i>
+                    Cart <span class="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="hero-title-line">The Taste</span>
+                    <span class="hero-title-line">of Africa</span>
+                </h1>
+                <p class="hero-subtitle">Where West African tradition meets contemporary luxury</p>
+                <div class="hero-buttons">
+                    <a href="menu.html" class="btn btn-primary">Explore Our Menu</a>
+                    <a href="#contact" class="btn btn-secondary scroll-link">Book a Table</a>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Our Story</h2>
+                <p class="section-subtitle">Named after the rare black Angolan antelope</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Le Palanka Nairobi is more than a restaurant—it's an experience. Named after the rare black Angolan antelope, we bring the authentic flavors of West Africa to the heart of Nairobi with contemporary elegance.</p>
+                    <p>Our culinary philosophy blends traditional recipes passed down through generations with modern techniques, creating dishes that honor heritage while embracing innovation.</p>
+                    <p>Set in a lush garden environment with ambient lighting and live music, Le Palanka offers an unforgettable dining journey for those seeking both culinary excellence and atmospheric perfection.</p>
+                    
+                    <div class="features">
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-utensils"></i>
+                            </div>
+                            <h3>Fine African Dining</h3>
+                            <p>Authentic West African cuisine with contemporary presentation</p>
+                        </div>
+                        
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-tree"></i>
+                            </div>
+                            <h3>Garden Setting</h3>
+                            <p>Lush outdoor dining surrounded by Nairobi's natural beauty</p>
+                        </div>
+                        
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-music"></i>
+                            </div>
+                            <h3>Live Music Weekends</h3>
+                            <p>Traditional and contemporary African performances</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-image">
+                    <div class="image-frame">
+                        <div class="image-placeholder">
+                            <i class="fas fa-image"></i>
+                            <p>Restaurant Ambiance</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Menu Preview -->
+    <section class="section menu-preview">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Signature Dishes</h2>
+                <p class="section-subtitle">A taste of our most celebrated creations</p>
+            </div>
+            
+            <div class="dishes-grid">
+                <!-- Dish 1 -->
+                <div class="dish-card">
+                    <div class="dish-image">
+                        <div class="image-placeholder">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                    </div>
+                    <div class="dish-info">
+                        <h3 class="dish-name">Jollof Rice Royale</h3>
+                        <p class="dish-description">Premium basmati rice cooked in rich tomato sauce with spices, served with plantains and choice of protein</p>
+                        <div class="dish-footer">
+                            <span class="dish-price">KSH 1,850</span>
+                            <button class="btn-add" data-name="Jollof Rice Royale" data-price="1850">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dish 2 -->
+                <div class="dish-card">
+                    <div class="dish-image">
+                        <div class="image-placeholder">
+                            <i class="fas fa-fish"></i>
+                        </div>
+                    </div>
+                    <div class="dish-info">
+                        <h3 class="dish-name">Grilled Tilapia with Banku</h3>
+                        <p class="dish-description">Whole tilapia marinated in spices, grilled to perfection, served with fermented corn dough</p>
+                        <div class="dish-footer">
+                            <span class="dish-price">KSH 2,200</span>
+                            <button class="btn-add" data-name="Grilled Tilapia with Banku" data-price="2200">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dish 3 -->
+                <div class="dish-card">
+                    <div class="dish-image">
+                        <div class="image-placeholder">
+                            <i class="fas fa-drumstick-bite"></i>
+                        </div>
+                    </div>
+                    <div class="dish-info">
+                        <h3 class="dish-name">Suya Skewers Platter</h3>
+                        <p class="dish-description">Tender beef, chicken, and lamb skewers with traditional peanut spice blend and fresh vegetables</p>
+                        <div class="dish-footer">
+                            <span class="dish-price">KSH 1,950</span>
+                            <button class="btn-add" data-name="Suya Skewers Platter" data-price="1950">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center">
+                <a href="menu.html" class="btn btn-primary">View Full Menu</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Payment Methods -->
+    <section class="section payment-methods">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Payment Methods</h2>
+                <p class="section-subtitle">Convenient and secure payment options</p>
+            </div>
+            
+            <div class="payment-cards">
+                <!-- M-Pesa -->
+                <div class="payment-card">
+                    <div class="payment-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>M-Pesa</h3>
+                    <p>Pay conveniently via M-Pesa</p>
+                    <button class="btn-payment-instructions" data-method="mpesa">View Instructions</button>
+                </div>
+                
+                <!-- Visa/MasterCard -->
+                <div class="payment-card">
+                    <div class="payment-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3>Visa / MasterCard</h3>
+                    <p>Secure online payment</p>
+                    <button class="btn-payment-instructions" data-method="card">More Info</button>
+                </div>
+                
+                <!-- Cash -->
+                <div class="payment-card">
+                    <div class="payment-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3>Cash</h3>
+                    <p>Pay at the restaurant</p>
+                    <button class="btn-payment-instructions" data-method="cash">More Info</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact & Reservation -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contact & Reservation</h2>
+                <p class="section-subtitle">Book your table for an unforgettable experience</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Visit Us</h3>
+                    <div class="contact-detail">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <p class="detail-label">Address</p>
+                            <p>Karen Road, Nairobi, Kenya</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-detail">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <p class="detail-label">Opening Hours</p>
+                            <p>Monday - Friday: 11:00 AM - 11:00 PM</p>
+                            <p>Saturday - Sunday: 10:00 AM - 12:00 AM</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-detail">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <p class="detail-label">Phone</p>
+                            <p>+254 700 123 456</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-detail">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <p class="detail-label">Email</p>
+                            <p>reservations@lepalanka.co.ke</p>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                    </div>
+                </div>
+                
+                <div class="reservation-form">
+                    <h3>Make a Reservation</h3>
+                    <form id="reservationForm">
+                        <div class="form-group">
+                            <input type="text" id="name" placeholder="Full Name" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="email" id="email" placeholder="Email Address" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="tel" id="phone" placeholder="Phone Number" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="date" id="date" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <input type="time" id="time" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <select id="guests" required>
+                                    <option value="" disabled selected>Guests</option>
+                                    <option value="1">1 Person</option>
+                                    <option value="2">2 People</option>
+                                    <option value="3">3 People</option>
+                                    <option value="4">4 People</option>
+                                    <option value="5">5 People</option>
+                                    <option value="6">6+ People</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <textarea id="requests" placeholder="Special Requests (Optional)" rows="3"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-block">Book Now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <span class="logo-icon">🦌</span>
+                        <span class="logo-text">Le Palanka</span>
+                    </a>
+                    <p class="footer-tagline">Where West African tradition meets contemporary luxury</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="menu.html">Menu</a>
+                    <a href="#about" class="scroll-link">About</a>
+                    <a href="#contact" class="scroll-link">Contact</a>
+                </div>
+                
+                <div class="footer-social">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Le Palanka Nairobi. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Payment Modal -->
+    <div class="modal" id="paymentModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Payment Instructions</h3>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Content will be inserted here -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+    
+    <!-- Quick Cart -->
+    <div class="quick-cart" id="quickCart">
+        <div class="quick-cart-header">
+            <h4>Your Cart</h4>
+            <button class="quick-cart-close">&times;</button>
+        </div>
+        <div class="quick-cart-body" id="quickCartItems">
+            <!-- Cart items will be inserted here -->
+            <p class="empty-cart-msg">Your cart is empty</p>
+        </div>
+        <div class="quick-cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">KSH 0</span>
+            </div>
+            <a href="checkout.html" class="btn btn-primary btn-block">Checkout</a>
+        </div>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+  </html>
