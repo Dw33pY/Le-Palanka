@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu | Le Palanka Nairobi</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦌</text></svg>">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-icon">🦌</span>
+                <span class="logo-text">Le Palanka</span>
+            </a>
+            
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="menu.html" class="active">Menu</a>
+                <a href="index.html#about" class="scroll-link">About</a>
+                <a href="index.html#contact" class="scroll-link">Contact</a>
+                <a href="checkout.html" class="cart-link">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+            
+            <button class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="mobile-menu" id="mobileMenu">
+                <a href="index.html">Home</a>
+                <a href="menu.html" class="active">Menu</a>
+                <a href="index.html#about" class="scroll-link">About</a>
+                <a href="index.html#contact" class="scroll-link">Contact</a>
+                <a href="checkout.html" class="cart-link-mobile">
+                    <i class="fas fa-shopping-cart"></i>
+                    Cart <span class="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Menu Header -->
+    <section class="menu-header">
+        <div class="container">
+            <h1 class="page-title">Our Menu</h1>
+            <p class="page-subtitle">Discover authentic West African flavors with contemporary elegance</p>
+        </div>
+    </section>
+    
+    <!-- Menu Categories -->
+    <section class="section menu-categories">
+        <div class="container">
+            <div class="category-nav">
+                <button class="category-btn active" data-category="starters">Starters</button>
+                <button class="category-btn" data-category="mains">Main Courses</button>
+                <button class="category-btn" data-category="desserts">Desserts</button>
+                <button class="category-btn" data-category="drinks">Drinks</button>
+            </div>
+            
+            <!-- Starters Category -->
+            <div class="menu-category active" id="starters">
+                <h2 class="category-title">Starters</h2>
+                <div class="menu-items">
+                    <!-- Item 1 -->
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3 class="item-name">Peanut Soup</h3>
+                            <p class="item-description">Rich groundnut soup with spinach and aromatic spices</p>
+                            <span class="item-price">KSH 850</span>
+                        </div>
+                        <button class="btn-add-item" data-name="Peanut Soup" data-price="850">Add</button>
+                    </div>
+                    
+                    <!-- Item 2 -->
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3 class="item-name">Plantain Chips with Avocado Dip</h3>
+                            <p class="item-description">Crispy plantain chips served with creamy avocado dip</p>
+                            <span class="item-price">KSH 750</span>
+                        </div>
+                        <button class="btn-add-item" data-name="Plantain Chips with Avocado Dip" data-price="750">Add</button>
+                    </div>
+                    
+                    <!-- Item 3 -->
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3 class="item-name">Suya Bites</h3>
+                            <p class="item-description">Spiced beef skewers with traditional peanut seasoning</p>
+                            <span class="item-price">KSH 950</span>
+                        </div>
+                        <button class="btn-add-item" data-name="Suya Bites" data-price="950">Add</button>
+                    </div>
+                    
+                    <!-- Item 4 -->
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3 class="item-name">Akara (Bean Cakes)</h3>
+                            <p class="item-description">Deep-fried bean cakes served with spicy tomato sauce</p>
+                            <span class="item-price">KSH 700</span>
+                        </div>
+                        <button class="btn-add-item" data-name="Akara (Bean Cakes)" data-price="700">Add</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Courses Category -->
+            <div class="menu-category" id="mains">
+                <h2 class="category-title">Main Courses</h2>
+                <div class="menu-items">
+                    <!-- Item 1 -->
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3 class="item-name">Jollof Rice Royale</h3>
+                            <p class="item-description">Premium basmati rice cooked in rich tomato sauce with spices, served with plantains and choice of protein</p>
+                            <span class="item-price">KSH 1,850</span>
+                        </div>
+                        <button class="btn-add-item" data-name="Jollof Rice Royale" data-price="1850">Add</button>
+                    </div>
+                    
+                    <!-- Item 2 -->
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3 class="item-name">Grilled Tilapia with Banku</h3>
+                            <p class="item-description">Whole tilapia marinated in spices, grilled to perfection, served with fermented corn dough</p>
+                            <span class="item-price">KSH 2,200</span>
+                        </div>
+                        <button class="btn-add-item" data-name="Grilled Tilapia with Banku" data-price="2200">Add</button>
+                    </div>
+                    
+                    <!-- Item 3 -->
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3 class="item-name">Egusi Soup with Pounded Yam</h3>
+                            <p class="item-description">Melon seed soup with vegetables and assorted meat, served with smooth pounded yam</p>
+                            <span class="item-price">KSH 1,950</span>
+                        </div>
+                        <button class="btn-add-item" data-name="Egusi Soup with Pounded Yam" data-price="1950">Add</button>
+                    </div>
+                    
+                    <!-- Item 4 -->
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3 class="item-name">Mafe (Peanut Stew)</h3>
+                            <p class="item-description">Rich peanut stew with tender beef, served with couscous</p>
+                            <span class="item-price">KSH 1,800</span>
+                        </div>
+                        <button class="btn-add-item" data-name="Mafe (Peanut Stew)" data-price="1800">Add</button>
+                    </div>
+                    
+                    <!-- Item 5 -->
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3 class="item-name">Waakye (Rice and Beans)</h3>
+                            <p class="item-description">Traditional Ghanaian rice and beans with spaghetti, boiled egg, and fried plantain</p>
+                            <span class="item-price">KSH 1,650</span>
+                        </div>
+                        <button class="btn-add-item" data-name="Waakye (Rice and Beans)" data-price="1650">Add</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Desserts Category -->
+            <div class="menu-category" id="desserts">
+                <h2 class="category-title">Desserts</h2>
+                <div class="menu-items">
+                    <!-- Item 1 -->
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3 class="item-name">Chin Chin with Honey Dip</h3>
+                            <p class="item-description">Crispy fried dough snacks served with local honey dip</p>
+                            <span class="item-price">KSH 650</span>
+                        </div>
+                        <button class="btn-add-item" data-name="Chin Chin with Honey Dip" data-price="650">Add</button>
+                    </div>
+                    
+                    <!-- Item 2 -->
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3 class="item-name">Plantain Fritters</h3>
+                            <p class="item-description">Sweet ripe plantain fritters with vanilla ice cream</p>
+                            <span class="item-price">KSH 750</span>
+                        </div>
+                        <button class="btn-add-item" data-name="Plantain Fritters" data-price="750">Add</button>
+                    </div>
+                    
+                    <!-- Item 3 -->
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3 class="item-name">Coconut Rice Pudding</h3>
+                            <p class="item-description">Creamy coconut rice pudding with mango coulis</p>
+                            <span class="item-price">KSH 700</span>
+                        </div>
+                        <button class="btn-add-item" data-name="Coconut Rice Pudding" data-price="700">Add</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Drinks Category -->
+            <div class="menu-category" id="drinks">
+                <h2 class="category-title">Drinks</h2>
+                <div class="menu-items">
+                    <!-- Item 1 -->
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3 class="item-name">Palm Wine</h3>
+                            <p class="item-description">Traditional fermented palm wine</p>
+                            <span class="item-price">KSH 600</span>
+                        </div>
+                        <button class="btn-add-item" data-name="Palm Wine" data-price="600">Add</button>
+                    </div>
+                    
+                    <!-- Item 2 -->
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3 class="item-name">Hibiscus Ginger Tea</h3>
+                            <p class="item-description">Refreshing hibiscus tea with fresh ginger</p>
+                            <span class="item-price">KSH 450</span>
+                        </div>
+                        <button class="btn-add-item" data-name="Hibiscus Ginger Tea" data-price="450">Add</button>
+                    </div>
+                    
+                    <!-- Item 3 -->
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3 class="item-name">African Sunset Cocktail</h3>
+                            <p class="item-description">A blend of tropical juices with a hint of spice</p>
+                            <span class="item-price">KSH 850</span>
+                        </div>
+                        <button class="btn-add-item" data-name="African Sunset Cocktail" data-price="850">Add</button>
+                    </div>
+                    
+                    <!-- Item 4 -->
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h3 class="item-name">Baobab Smoothie</h3>
+                            <p class="item-description">Nutrient-rich baobab fruit blended with banana and honey</p>
+                            <span class="item-price">KSH 550</span>
+                        </div>
+                        <button class="btn-add-item" data-name="Baobab Smoothie" data-price="550">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Call to Action -->
+    <section class="section cta">
+        <div class="container">
+            <h2>Ready to experience the taste of Africa?</h2>
+            <p>Book your table now for an unforgettable dining experience</p>
+            <a href="index.html#contact" class="btn btn-primary">Make a Reservation</a>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <span class="logo-icon">🦌</span>
+                        <span class="logo-text">Le Palanka</span>
+                    </a>
+                    <p class="footer-tagline">Where West African tradition meets contemporary luxury</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="menu.html">Menu</a>
+                    <a href="index.html#about" class="scroll-link">About</a>
+                    <a href="index.html#contact" class="scroll-link">Contact</a>
+                </div>
+                
+                <div class="footer-social">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Le Palanka Nairobi. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+    
+    <!-- Quick Cart -->
+    <div class="quick-cart" id="quickCart">
+        <div class="quick-cart-header">
+            <h4>Your Cart</h4>
+            <button class="quick-cart-close">&times;</button>
+        </div>
+        <div class="quick-cart-body" id="quickCartItems">
+            <!-- Cart items will be inserted here -->
+            <p class="empty-cart-msg">Your cart is empty</p>
+        </div>
+        <div class="quick-cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">KSH 0</span>
+            </div>
+            <a href="checkout.html" class="btn btn-primary btn-block">Checkout</a>
+        </div>
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+                      </html>
